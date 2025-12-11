@@ -1,12 +1,15 @@
 import express from 'express';
 import database from './config/database.js';
+import usuarioRoutes from './routes/usuarioRoutes.js';
 
-const app = express();
 database();
-app.use("/",(req,res)=>{
-    res.send("Hola mundo de la electronica");
-});
+const app = express();
+app.use(express.json());
+app.use("/api",usuarioRoutes);
 
-app.listen(process.env.PORT,()=>{
+
+
+const PORT = process.env.PORT || 4000;
+app.listen(PORT,()=>{
     console.log(`Servidor escuchando en el puerto ${process.env.PORT}`);
 });
